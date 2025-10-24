@@ -1,0 +1,60 @@
+package com.gavruseva.task1.services.implement;
+
+import com.gavruseva.task1.entity.CustomArray;
+import com.gavruseva.task1.exception.ArrayException;
+import com.gavruseva.task1.services.ArraySortInterface;
+import com.gavruseva.task1.validators.implement.ArrayValidator;
+
+public class ArraySort implements ArraySortInterface {
+    private final ArrayValidator validator = new ArrayValidator();
+    @Override
+    public void bubbleSort(CustomArray array) throws ArrayException {
+        if(!validator.isValid(array)){
+            throw new ArrayException("Array is empty");
+        }
+        int[] tempArray = array.getArray();
+        for (int i = 0; i < tempArray.length - 1; i++) {
+            for (int j = 0; j < tempArray.length - i - 1; j++) {
+                if (tempArray[j] > tempArray[j + 1]) {
+                    int temp = tempArray[j];
+                    tempArray[j] = tempArray[j + 1];
+                    tempArray[j + 1] = temp;
+                }
+            }
+        }
+        array.setArray(tempArray);
+    }
+    @Override
+    public void insertionSort(CustomArray array) throws ArrayException {
+        if(!validator.isValid(array)){
+            throw new ArrayException("Array is empty");
+        }
+        int[] tempArray = array.getArray();
+        for (int i = 1; i < tempArray.length; i++){
+            for (int j = i; j > 0 && tempArray[j-1] > tempArray[j]; j--){
+                int temp = tempArray[j];
+                tempArray[j] = tempArray[j-1];
+                tempArray[j-1] = temp;
+            }
+        }
+        array.setArray(tempArray);
+    }
+    @Override
+    public void selectionSort(CustomArray array) throws ArrayException {
+        if(!validator.isValid(array)){
+            throw new ArrayException("Array is empty");
+        }
+        int[] tempArray = array.getArray();
+        for (int i = 0; i < tempArray.length - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < tempArray.length; j++) {
+                if (tempArray[j] < tempArray[minIndex]) {
+                    minIndex = j;
+                }
+            }
+            int temp = tempArray[minIndex];
+            tempArray[minIndex] = tempArray[i];
+            tempArray[i] = temp;
+        }
+    }
+}
