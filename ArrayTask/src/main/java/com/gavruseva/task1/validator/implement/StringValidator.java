@@ -15,7 +15,7 @@ public class StringValidator implements StringValidatorInterface {
             return false;
         }
         boolean isVal = false;
-        if(str.matches("(-?\\d+[,]?\\s+?)*")){
+        if(str.matches("(-?\\d+([,]?\\s+)?)*")){
             String[] elements = str.split(",\\s+");
             isVal=true;
             for (String element : elements) {

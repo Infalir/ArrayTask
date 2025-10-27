@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 public class ArraySort implements ArraySortInterface {
     private final static Logger logger = LogManager.getLogger();
     @Override
-    public void bubbleSort(CustomArray array) throws ArrayException {
+    public void bubbleSort(CustomArray array) {
         logger.info("Method for bubble sorting is called");
         int[] tempArray = array.getArray();
         for (int i = 0; i < tempArray.length - 1; i++) {
@@ -24,7 +24,7 @@ public class ArraySort implements ArraySortInterface {
         array.setArray(tempArray);
     }
     @Override
-    public void insertionSort(CustomArray array) throws ArrayException {
+    public void insertionSort(CustomArray array) {
         logger.info("Method for insertion sorting is called");
         int[] tempArray = array.getArray();
         for (int i = 1; i < tempArray.length; i++){
@@ -37,7 +37,7 @@ public class ArraySort implements ArraySortInterface {
         array.setArray(tempArray);
     }
     @Override
-    public void selectionSort(CustomArray array) throws ArrayException {
+    public void selectionSort(CustomArray array){
         logger.info("Method for selection sorting is called");
         int[] tempArray = array.getArray();
         for (int i = 0; i < tempArray.length - 1; i++) {

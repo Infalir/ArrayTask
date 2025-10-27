@@ -12,7 +12,7 @@ public class StringParser implements StringParserInterface {
 
     @Override
     public int[] parseString(List<String> arrayList) {
-        logger.info("Method parseString called");
+        logger.info("Method for parsing String is called");
         int[] arrayInt = null;
         StringValidator stringValidate = new StringValidator();
         for (String s : arrayList) {
@@ -22,7 +22,7 @@ public class StringParser implements StringParserInterface {
                 for (int i = 0; i < elements.length; i++) {
                     arrayInt[i] = Integer.parseInt(elements[i]);
                 }
-                break;
+              break;
             }
 
         }
