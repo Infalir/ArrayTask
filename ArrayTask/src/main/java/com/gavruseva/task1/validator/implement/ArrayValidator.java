@@ -1,10 +1,10 @@
-package com.gavruseva.task1.validators.implement;
+package com.gavruseva.task1.validator.implement;
 
 import com.gavruseva.task1.entity.CustomArray;
-import com.gavruseva.task1.validators.ArrayValidatorInterface;
+import com.gavruseva.task1.validator.interfaces.ArrayValidatorInterface;
 
 public class ArrayValidator implements ArrayValidatorInterface {
-    public boolean isValid(CustomArray array) {
+    public boolean isArrayValid(CustomArray array) {
         return array != null && array.getArray().length > 0;
     }
 }

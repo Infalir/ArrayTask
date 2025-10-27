@@ -1,4 +1,4 @@
-package com.gavruseva.task1.services;
+package com.gavruseva.task1.service.interfaces;
 
 import com.gavruseva.task1.entity.CustomArray;
 

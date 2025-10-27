@@ -1,6 +1,7 @@
-package com.gavruseva.task1.services.implement;
+package com.gavruseva.task1.service.implement;
 
 import com.gavruseva.task1.entity.CustomArray;
+import com.gavruseva.task1.exception.ArrayException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

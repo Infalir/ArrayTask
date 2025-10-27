@@ -1,17 +1,16 @@
-package com.gavruseva.task1.services.implement;
+package com.gavruseva.task1.service.implement;
 
 import com.gavruseva.task1.entity.CustomArray;
 import com.gavruseva.task1.exception.ArrayException;
-import com.gavruseva.task1.services.ArraySortInterface;
-import com.gavruseva.task1.validators.implement.ArrayValidator;
+import com.gavruseva.task1.service.interfaces.ArraySortInterface;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ArraySort implements ArraySortInterface {
-    private final ArrayValidator validator = new ArrayValidator();
+    private final static Logger logger = LogManager.getLogger();
     @Override
     public void bubbleSort(CustomArray array) throws ArrayException {
-        if(!validator.isValid(array)){
-            throw new ArrayException("Array is empty");
-        }
+        logger.info("Method for bubble sorting is called");
         int[] tempArray = array.getArray();
         for (int i = 0; i < tempArray.length - 1; i++) {
             for (int j = 0; j < tempArray.length - i - 1; j++) {
@@ -26,9 +25,7 @@ public class ArraySort implements ArraySortInterface {
     }
     @Override
     public void insertionSort(CustomArray array) throws ArrayException {
-        if(!validator.isValid(array)){
-            throw new ArrayException("Array is empty");
-        }
+        logger.info("Method for insertion sorting is called");
         int[] tempArray = array.getArray();
         for (int i = 1; i < tempArray.length; i++){
             for (int j = i; j > 0 && tempArray[j-1] > tempArray[j]; j--){
@@ -41,9 +38,7 @@ public class ArraySort implements ArraySortInterface {
     }
     @Override
     public void selectionSort(CustomArray array) throws ArrayException {
-        if(!validator.isValid(array)){
-            throw new ArrayException("Array is empty");
-        }
+        logger.info("Method for selection sorting is called");
         int[] tempArray = array.getArray();
         for (int i = 0; i < tempArray.length - 1; i++) {
             int minIndex = i;
@@ -56,5 +51,6 @@ public class ArraySort implements ArraySortInterface {
             tempArray[minIndex] = tempArray[i];
             tempArray[i] = temp;
         }
+        array.setArray(tempArray);
     }
 }

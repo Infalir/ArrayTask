@@ -2,27 +2,35 @@ package com.gavruseva.task1.entity;
 
 
 import com.gavruseva.task1.exception.ArrayException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 
 public class CustomArray {
+    private final static Logger logger = LogManager.getLogger();
     private int[] array;
-    public CustomArray() {}
+
     public CustomArray(int... array) throws ArrayException {
         if (array == null || array.length == 0){
+            logger.warn("Trying to create a null or empty array");
             throw new ArrayException("Can't create an array out of empty array");
         }
         this.array = array;
     }
+
     public int[] getArray() {
         return Arrays.copyOf(array, array.length);
     }
-    public void setArray(int[] array) throws ArrayException {
+
+    public void setArray(int... array) throws ArrayException {
         if (array == null || array.length == 0){
+            logger.warn("Trying to set a null or empty array");
             throw new ArrayException("Can't set an array from an empty array");
         }
         this.array = array;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -42,6 +50,7 @@ public class CustomArray {
         }
         return true;
     }
+
     @Override
     public int hashCode() {
         int hashCode = 7;
@@ -50,6 +59,7 @@ public class CustomArray {
         }
         return hashCode;
     }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
