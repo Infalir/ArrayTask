@@ -2,6 +2,7 @@ package com.gavruseva.task1.entity;
 
 
 import com.gavruseva.task1.exception.ArrayException;
+import com.gavruseva.task1.observer.impl.ArrayObserverImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,26 +10,33 @@ import java.util.Arrays;
 
 public class CustomArray {
     private final static Logger logger = LogManager.getLogger();
+    private int id;
     private int[] array;
 
-    public CustomArray(int... array) throws ArrayException {
+    public CustomArray(int[] array, int id) throws ArrayException {
         if (array == null || array.length == 0){
-            logger.warn("Trying to create a null or empty array");
-            throw new ArrayException("Can't create an array out of empty array");
+            logger.error("Trying to create a null or empty array");
+            throw new ArrayException("Trying to create a null or empty array");
         }
-        this.array = array;
+        this.id = id;
+        this.array = Arrays.copyOf(array, array.length);
     }
 
     public int[] getArray() {
         return Arrays.copyOf(array, array.length);
     }
 
-    public void setArray(int... array) throws ArrayException {
-        if (array == null || array.length == 0){
+    public void setArray(int[] array) throws ArrayException {
+        if (array == null ||array.length == 0){
             logger.warn("Trying to set a null or empty array");
-            throw new ArrayException("Can't set an array from an empty array");
+            throw new ArrayException("Trying to set a null or empty array");
         }
-        this.array = array;
+        this.array = Arrays.copyOf(array, array.length);
+        ArrayObserverImpl.getInstance().notifyObservers(this);
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override

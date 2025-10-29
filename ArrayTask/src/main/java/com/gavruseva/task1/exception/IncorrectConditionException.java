@@ -1,6 +1,6 @@
 package com.gavruseva.task1.exception;
 
-public class IncorrectConditionException extends RuntimeException {
+public class IncorrectConditionException extends Exception {
     public IncorrectConditionException() {
         super();
     }

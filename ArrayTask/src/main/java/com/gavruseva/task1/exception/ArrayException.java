@@ -1,6 +1,6 @@
 package com.gavruseva.task1.exception;
 
-public class ArrayException extends RuntimeException {
+public class ArrayException extends Exception {
     public ArrayException() {
         super();
     }

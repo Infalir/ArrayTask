@@ -1,0 +1,12 @@
+package com.gavruseva.task1.sorter;
+
+import com.gavruseva.task1.entity.CustomArray;
+
+import java.util.Comparator;
+
+public class FirstElementComparator implements Comparator<CustomArray> {
+    @Override
+    public int compare(CustomArray a1, CustomArray a2) {
+        return Integer.compare(a1.getArray()[0], a2.getArray()[0]);
+    }
+}

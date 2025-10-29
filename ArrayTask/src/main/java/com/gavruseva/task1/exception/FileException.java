@@ -1,6 +1,6 @@
 package com.gavruseva.task1.exception;
 
-public class FileException extends RuntimeException {
+public class FileException extends Exception {
     public FileException() {
         super();
     }
