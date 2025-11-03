@@ -1,9 +1,10 @@
 package com.gavruseva.task1.warehouse;
 
-import com.gavruseva.task1.data.CalculatedData;
-import com.gavruseva.task1.entity.CustomArray;
+import com.gavruseva.task1.data.ArrayData;
+
+import java.util.Map;
 
 public interface StorageWarehouse {
-    void updateData(CustomArray array);
-    CalculatedData getData(int id);
+    ArrayData getData(int id);
+    Map<Integer, ArrayData> getMap();
 }

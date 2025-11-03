@@ -4,5 +4,5 @@ import com.gavruseva.task1.entity.CustomArray;
 import com.gavruseva.task1.exception.ArrayException;
 
 public interface ArrayObserver {
-    void update(CustomArray array) throws ArrayException;
+    void update(CustomArray array);
 }

@@ -2,16 +2,19 @@ package com.gavruseva.task1.entity;
 
 
 import com.gavruseva.task1.exception.ArrayException;
+import com.gavruseva.task1.observer.ArrayObservable;
+import com.gavruseva.task1.observer.ArrayObserver;
 import com.gavruseva.task1.observer.impl.ArrayObserverImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 
-public class CustomArray {
+public class CustomArray implements ArrayObservable {
     private final static Logger logger = LogManager.getLogger();
     private int id;
     private int[] array;
+    private ArrayObserver observer;
 
     public CustomArray(int[] array, int id) throws ArrayException {
         if (array == null || array.length == 0){
@@ -20,6 +23,26 @@ public class CustomArray {
         }
         this.id = id;
         this.array = Arrays.copyOf(array, array.length);
+    }
+
+    @Override
+    public void attach(ArrayObserver observer) {
+        logger.info("An observer has been attached to an array");
+        this.observer = observer;
+    }
+
+    @Override
+    public void detach(ArrayObserver observer) {
+        logger.info("An observer has been detached to an array");
+        this.observer = null;
+    }
+
+    @Override
+    public void notifyObservers() {
+        if (observer != null){
+            logger.info("Observers have been notified");
+            observer.update(this);
+        }
     }
 
     public int[] getArray() {
@@ -32,7 +55,7 @@ public class CustomArray {
             throw new ArrayException("Trying to set a null or empty array");
         }
         this.array = Arrays.copyOf(array, array.length);
-        ArrayObserverImpl.getInstance().notifyObservers(this);
+        notifyObservers();
     }
 
     public int getId() {

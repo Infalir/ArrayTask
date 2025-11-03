@@ -7,47 +7,47 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ArrayCalculateImplTest {
+public class ArrayCalculateImplTest {
     private CustomArray array;
     private ArrayCalculateImpl calculator;
 
     @BeforeEach
-    void setUp() throws ArrayException{
+    public void setUp() throws ArrayException{
         int[] tempArray = {7, 3, -1, 0, 18, -3};
         array = new CustomArray(tempArray, 0);
         calculator = new ArrayCalculateImpl();
     }
 
     @Test
-    void testFindMin() throws ArrayException {
+    public void testFindMin() throws ArrayException {
         int expectedResult = -3;
         int actualResult = calculator.findMin(array);
         assertEquals(expectedResult, actualResult);
     }
 
     @Test
-    void testFindMax()throws ArrayException{
+    public void testFindMax()throws ArrayException{
         int expectedResult = 18;
         int actualResult = calculator.findMax(array);
         assertEquals(expectedResult, actualResult);
     }
 
     @Test
-    void testFindSum()throws ArrayException{
+    public void testFindSum()throws ArrayException{
         int expectedResult = 24;
         int actualResult = calculator.findSum(array);
         assertEquals(expectedResult, actualResult);
     }
 
     @Test
-    void testFindAvg()throws ArrayException{
+    public void testFindAvg()throws ArrayException{
         double expectedResult = 24.0/6.0;
         double actualResult = calculator.findAvg(array);
         assertEquals(expectedResult, actualResult);
     }
 
     @Test
-    void testFindPositiveAmount()throws ArrayException{
+    public void testFindPositiveAmount()throws ArrayException{
         int expectedResult = 3;
         int actualResult = calculator.findPositiveAmount(array);
         assertEquals(expectedResult, actualResult);

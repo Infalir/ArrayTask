@@ -9,14 +9,14 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class FileReaderTest {
+public class FileReaderTest {
     private FileArrayReaderImpl fileReader;
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         fileReader = new FileArrayReaderImpl();
     }
     @Test
-    void testReadingLinesFromFile() throws FileException {
+    public void testReadingLinesFromFile() throws FileException {
         List<String> lines = fileReader.readLinesFromFile("src/test/resources/array.txt");
         List<String> expectedList = Arrays.asList("6, -1, -4, 11, -9,0, 45,-55","999,a 2, 0g, -78, 35, 43gda, -2, 98, 77, -145, 3, 0, null",
                 "2, 46, 8, 3, 1, 0");
@@ -24,7 +24,7 @@ class FileReaderTest {
     }
 
     @Test
-    void testThrowsForInvalidFileName(){
+    public void testThrowsForInvalidFileName(){
         assertThrows(FileException.class, () -> fileReader.readLinesFromFile(""));
     }
 }

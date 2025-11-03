@@ -6,20 +6,20 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ArrayBuilderImplTest {
+public class ArrayBuilderImplTest {
     private ArrayBuilderImpl arrayBuilderImpl;
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         arrayBuilderImpl = new ArrayBuilderImpl();
     }
     @Test
-    void testCreateIntegerArray() throws ArrayException {
+    public void testCreateIntegerArray() throws ArrayException {
         int[] expectedArray = {1, 2, 3, 4, 5};
         int[] actualArray = arrayBuilderImpl.setIntegerArray(1, 2, 3, 4, 5).build().getArray();
         assertArrayEquals(expectedArray, actualArray);
     }
     @Test
-    void testThrowsExceptionWhenEmpty(){
+    public void testThrowsExceptionWhenEmpty(){
         assertThrows(ArrayException.class, () -> arrayBuilderImpl.setIntegerArray());
     }
 }

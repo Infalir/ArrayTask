@@ -1,44 +1,24 @@
 package com.gavruseva.task1.observer.impl;
 
+import com.gavruseva.task1.data.ArrayData;
 import com.gavruseva.task1.entity.CustomArray;
-import com.gavruseva.task1.exception.ArrayException;
 import com.gavruseva.task1.observer.ArrayObserver;
-import com.gavruseva.task1.validator.ArrayValidator;
-import com.gavruseva.task1.validator.impl.ArrayValidatorImpl;
+import com.gavruseva.task1.warehouse.impl.StorageWarehouseImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
-public class ArrayObserverImpl {
+public class ArrayObserverImpl implements ArrayObserver {
     private final static Logger logger = LogManager.getLogger();
-    List<ArrayObserver> observers;
-    private static ArrayObserverImpl instance;
-    private ArrayValidatorImpl validator;
-    private ArrayObserverImpl() {
-        validator = new ArrayValidatorImpl();
-        observers = new ArrayList<ArrayObserver>();
-    }
-    public static ArrayObserverImpl getInstance() {
-        if (instance == null) {
-            instance = new ArrayObserverImpl();
-        }
-        return instance;
-    }
-    public void addObserver(ArrayObserver observer) {
-        observers.add(observer);
-    }
-    public void removeObserver(ArrayObserver observer) {
-        observers.remove(observer);
-    }
-    public void notifyObservers(CustomArray array) throws ArrayException {
-        if(!validator.isArrayValid(array)) {
-            logger.error("Array is not valid");
-            throw new ArrayException("Array is not valid");
-        }
-        for (ArrayObserver observer : observers) {
-            observer.update(array);
-        }
+    @Override
+    public void update(CustomArray array) {
+        logger.info("Updating data in the warehouse");
+        int[] temp = array.getArray();
+        int sum = Arrays.stream(temp).sum();
+        double avg = Arrays.stream(temp).average().orElseThrow();
+        int min = Arrays.stream(temp).min().orElseThrow();
+        int max = Arrays.stream(temp).max().orElseThrow();
+        StorageWarehouseImpl.getInstance().getMap().put(array.getId(), new ArrayData(sum, avg, min, max));
     }
 }

@@ -3,7 +3,9 @@ package com.gavruseva.task1.repository.impl;
 import com.gavruseva.task1.entity.CustomArray;
 import com.gavruseva.task1.exception.ArrayException;
 import com.gavruseva.task1.repository.ArrayRepository;
+import com.gavruseva.task1.queries.Specification;
 import com.gavruseva.task1.validator.impl.ArrayValidatorImpl;
+import com.gavruseva.task1.warehouse.impl.StorageWarehouseImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -34,28 +36,26 @@ public class ArrayRepositoryImpl implements ArrayRepository {
             logger.error("Array is not valid");
             throw new ArrayException("Array is not valid");
         }
+        array.notifyObservers();
         arrays.add(array);
     }
     @Override
-    public void removeArray(int id) throws ArrayException {
+    public boolean removeArray(int id) throws ArrayException {
         logger.info("Called a method for removing an array");
         CustomArray array = arrays.get(id);
         if(!validator.isArrayValid(array)) {
             logger.error("No such array");
             throw new ArrayException("Array is not valid");
         }
+        StorageWarehouseImpl.getInstance().getMap().remove(array.getId());
         arrays.remove(array);
+        return true;
     }
     @Override
-    public CustomArray getArrayById(int id) {
-        logger.info("Called a method for getting an array by id");
-        for (CustomArray array : arrays) {
-            if(array.getId() == id) {
-                return array;
-            }
-        }
-        logger.warn("There's no array with index" + id);
-        return null;
+    public List<CustomArray> query(Specification specification){
+        logger.info("Called a method for querying an array");
+        List<CustomArray> list = arrays.stream().filter(specification::specify).toList();
+        return list;
     }
     @Override
     public List<CustomArray> getAllArrays() throws ArrayException {
@@ -67,6 +67,10 @@ public class ArrayRepositoryImpl implements ArrayRepository {
         logger.info("Called a method for sorting arrays");
         List<CustomArray> sorted = new ArrayList<>(arrays);
         sorted.sort(comparator);
+        for(CustomArray array : sorted) {
+            logger.info(array.toString());
+        }
         return sorted;
     }
+
 }
