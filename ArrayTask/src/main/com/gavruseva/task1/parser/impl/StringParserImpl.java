@@ -10,6 +10,7 @@ import java.util.List;
 public class StringParserImpl implements StringParser {
     private final static Logger logger = LogManager.getLogger();
     private final String SPLIT_REGEX = ",\\s+";
+
     @Override
     public int[] parseString(List<String> arrayList) {
         logger.info("Method for parsing String is called");

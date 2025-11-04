@@ -11,6 +11,7 @@ import java.util.Arrays;
 
 public class ArrayObserverImpl implements ArrayObserver {
     private final static Logger logger = LogManager.getLogger();
+
     @Override
     public void update(CustomArray array) {
         logger.info("Updating data in the warehouse");

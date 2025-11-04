@@ -44,4 +44,26 @@ public class CustomArrayTest {
         int expectedId = 1;
         assertEquals(expectedId, customArray.getId());
     }
+
+    @Test
+    public void testThrowsExceptionWhenCreatingEmptyArray(){
+        int[] temp = {};
+        assertThrows(ArrayException.class, () -> new CustomArray(temp, id));
+    }
+
+    @Test
+    public void testThrowsExceptionWhenCreatingNullArray(){
+        assertThrows(ArrayException.class, () -> new CustomArray(null, id));
+    }
+
+    @Test
+    public void testThrowsExceptionWhenCreatingInvalidId(){
+        assertThrows(ArrayException.class, () -> new CustomArray(array, -1));
+    }
+
+    @Test
+    public void testThrowsExceptionWhenSettingInvalidArray() throws ArrayException {
+        customArray = new CustomArray(array, id);
+        assertThrows(ArrayException.class, () -> customArray.setArray(null));
+    }
 }

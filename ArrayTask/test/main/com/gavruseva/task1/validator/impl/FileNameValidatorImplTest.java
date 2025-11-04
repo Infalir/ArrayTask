@@ -13,11 +13,11 @@ public class FileNameValidatorImplTest {
     }
     @Test
     public void testValidFileName() {
-        assertTrue(fileNameValidatorImpl.isFileNameValid("src/test/resources/array.txt"));
+        assertTrue(fileNameValidatorImpl.isFileNameValid("test/resources/array.txt"));
     }
     @Test
     public void testNonExistentFile() {
-        assertFalse(fileNameValidatorImpl.isFileNameValid("src/test/resources/invalid.txt"));
+        assertFalse(fileNameValidatorImpl.isFileNameValid("test/resources/invalid.txt"));
     }
 
     @Test

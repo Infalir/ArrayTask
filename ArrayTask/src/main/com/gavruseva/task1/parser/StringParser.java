@@ -5,5 +5,5 @@ import main.com.gavruseva.task1.exception.ArrayException;
 import java.util.List;
 
 public interface StringParser {
-    int[] parseString(List<String> s) throws ArrayException;
+    int[] parseString(List<String> s);
 }

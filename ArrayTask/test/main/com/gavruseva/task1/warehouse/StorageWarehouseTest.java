@@ -14,8 +14,8 @@ public class StorageWarehouseTest {
         ArrayData data = new ArrayData(1,2, 3, 4);
         storageWarehouse.getMap().put(0, data);
         double[] expectedData = {1, 2, 3, 4};
-        ArrayData recievedData = storageWarehouse.getData(0);
-        double[] actualData = {recievedData.getSum(), recievedData.getAvg(), recievedData.getMax(), recievedData.getMin()};
+        ArrayData receivedData = storageWarehouse.getData(0);
+        double[] actualData = {receivedData.getSum(), receivedData.getAvg(), receivedData.getMax(), receivedData.getMin()};
         assertArrayEquals(expectedData, actualData, 0.001);
     }
 }

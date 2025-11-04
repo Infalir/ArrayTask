@@ -17,6 +17,7 @@ public class ArrayRepository {
     private final static Logger logger = LogManager.getLogger();
     private List<CustomArray> arrays;
     private final ArrayValidatorImpl validator;
+
     private ArrayRepository() {
         arrays = new ArrayList<CustomArray>();
         validator = new ArrayValidatorImpl();
@@ -33,7 +34,7 @@ public class ArrayRepository {
         logger.info("Called a method for adding an array");
         if(!validator.isArrayValid(array)) {
             logger.error("Array is not valid");
-            throw new ArrayException("Array is not valid");
+            throw new ArrayException("Can't create an invalid array");
         }
         array.notifyObservers();
         arrays.add(array);
@@ -44,7 +45,7 @@ public class ArrayRepository {
         CustomArray array = arrays.get(id);
         if(!validator.isArrayValid(array)) {
             logger.error("No such array");
-            throw new ArrayException("Array is not valid");
+            throw new ArrayException("Can't remove nonexistent array");
         }
         StorageWarehouse.getInstance().getMap().remove(array.getId());
         arrays.remove(array);

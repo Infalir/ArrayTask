@@ -9,6 +9,7 @@ public class StringValidatorImpl implements StringValidator {
     private final String LINE_REGEX = "(-?\\d+([,]?\\s+)?)*";
     private final String SPLIT_REGEX = ",\\s+";
     private final String NUMBER_REGEX = "-?\\d+";
+
     @Override
     public boolean isStringValid(String str) {
         logger.info("Method validate of string called");

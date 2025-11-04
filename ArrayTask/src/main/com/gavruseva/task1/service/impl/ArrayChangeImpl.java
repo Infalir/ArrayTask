@@ -16,7 +16,7 @@ public class ArrayChangeImpl implements ArrayChange {
         ArrayValidatorImpl validator = new ArrayValidatorImpl();
         logger.info("Method for changing elements in an array by condition is called");
         if(!validator.isArrayValid(array)){
-            logger.warn("Array is not valid");
+            logger.warn("Array is not valid for changing elements");
             throw new ArrayException("Array is not valid");
         }
         int[] tempArray = array.getArray();

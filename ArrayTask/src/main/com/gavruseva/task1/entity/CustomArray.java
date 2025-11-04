@@ -16,9 +16,9 @@ public class CustomArray implements ArrayObservable {
     private ArrayObserver observer;
 
     public CustomArray(int[] array, int id) throws ArrayException {
-        if (array == null || array.length == 0){
-            logger.error("Trying to create a null or empty array");
-            throw new ArrayException("Trying to create a null or empty array");
+        if (array == null || array.length == 0 || id < 0){
+            logger.error("Trying to create an invalid array");
+            throw new ArrayException("Can't create an invalid array");
         }
         this.id = id;
         this.array = Arrays.copyOf(array, array.length);
@@ -49,7 +49,7 @@ public class CustomArray implements ArrayObservable {
     }
 
     public void setArray(int[] array) throws ArrayException {
-        if (array == null ||array.length == 0){
+        if (array == null || array.length == 0){
             logger.warn("Trying to set a null or empty array");
             throw new ArrayException("Trying to set a null or empty array");
         }

@@ -17,14 +17,15 @@ public class ArrayStreamChangeImpl implements ArrayChange {
 
     @Override
     public void changeElements(CustomArray customArray, String condition, int whatChange, int ch) throws ArrayException, IncorrectConditionException {
-        logger.info("Method for change number  with condition for stream is called");
+        logger.info("Method for change number with condition for stream is called");
         if (!arrayValidatorImpl.isArrayValid(customArray)) {
-            throw new ArrayException("Array is null");
+            logger.error("Array is not valid for changing elements using stream");
+            throw new ArrayException("Array is null or empty");
         }
         String trimmedCondition = condition.trim();
-        boolean notCorrectCondition = Arrays.stream(arrayOfCondition)
-                .noneMatch(x -> x.equals(trimmedCondition));
+        boolean notCorrectCondition = Arrays.stream(arrayOfCondition).noneMatch(x -> x.equals(trimmedCondition));
         if (notCorrectCondition) {
+            logger.error("Condition for changing elements using stream is not correct");
             throw new IncorrectConditionException();
         }
         int[] tempArray = customArray.getArray();

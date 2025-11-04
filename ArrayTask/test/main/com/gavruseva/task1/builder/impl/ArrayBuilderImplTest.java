@@ -15,11 +15,16 @@ public class ArrayBuilderImplTest {
     @Test
     public void testCreateIntegerArray() throws ArrayException {
         int[] expectedArray = {1, 2, 3, 4, 5};
-        int[] actualArray = arrayBuilderImpl.setIntegerArray(1, 2, 3, 4, 5).build().getArray();
+        int id = 3;
+        int[] actualArray = arrayBuilderImpl.setIntegerArray(1, 2, 3, 4, 5).setIndex(id).build().getArray();
         assertArrayEquals(expectedArray, actualArray);
     }
     @Test
     public void testThrowsExceptionWhenEmpty(){
         assertThrows(ArrayException.class, () -> arrayBuilderImpl.setIntegerArray());
+    }
+    @Test
+    public void testThrowsExceptionWhenWrongIndex(){
+        assertThrows(ArrayException.class, () -> arrayBuilderImpl.setIndex(-1));
     }
 }

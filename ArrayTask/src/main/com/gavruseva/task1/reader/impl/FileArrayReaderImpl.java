@@ -14,6 +14,7 @@ import java.util.Scanner;
 
 public class FileArrayReaderImpl implements FileArrayReader {
     private final static Logger logger = LogManager.getLogger();
+
     @Override
     public List<String> readLinesFromFile(String path) throws FileException {
         FileNameValidatorImpl fileNameValidatorImpl = new FileNameValidatorImpl();
@@ -21,7 +22,6 @@ public class FileArrayReaderImpl implements FileArrayReader {
             logger.error("Reading from the file impossible");
             throw new FileException("Reading from the file impossible");
         }
-
         List<String> list = new ArrayList<>();
         File file = new File(path);
         try (Scanner scanner = new Scanner(file)) {

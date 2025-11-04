@@ -3,14 +3,20 @@ package main.com.gavruseva.task1.service.impl;
 import main.com.gavruseva.task1.entity.CustomArray;
 import main.com.gavruseva.task1.exception.ArrayException;
 import main.com.gavruseva.task1.service.ArraySort;
+import main.com.gavruseva.task1.validator.impl.ArrayValidatorImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class ArraySortImpl implements ArraySort {
     private final static Logger logger = LogManager.getLogger();
+    private final ArrayValidatorImpl arrayValidator = new ArrayValidatorImpl();
     @Override
     public void bubbleSort(CustomArray array) throws ArrayException {
         logger.info("Method for bubble sorting is called");
+        if(!arrayValidator.isArrayValid(array)) {
+            logger.error("Array is not valid for bubble sorting");
+            throw new ArrayException("Can't work with an invalid array valid");
+        }
         int[] tempArray = array.getArray();
         for (int i = 0; i < tempArray.length - 1; i++) {
             for (int j = 0; j < tempArray.length - i - 1; j++) {
@@ -26,6 +32,10 @@ public class ArraySortImpl implements ArraySort {
     @Override
     public void insertionSort(CustomArray array) throws ArrayException{
         logger.info("Method for insertion sorting is called");
+        if(!arrayValidator.isArrayValid(array)) {
+            logger.error("Array is not valid for insertion sorting");
+            throw new ArrayException("Can't work with an invalid array valid");
+        }
         int[] tempArray = array.getArray();
         for (int i = 1; i < tempArray.length; i++){
             for (int j = i; j > 0 && tempArray[j-1] > tempArray[j]; j--){
@@ -39,6 +49,10 @@ public class ArraySortImpl implements ArraySort {
     @Override
     public void selectionSort(CustomArray array)throws ArrayException{
         logger.info("Method for selection sorting is called");
+        if(!arrayValidator.isArrayValid(array)) {
+            logger.error("Array is not valid for selection sorting");
+            throw new ArrayException("Can't work with an invalid array valid");
+        }
         int[] tempArray = array.getArray();
         for (int i = 0; i < tempArray.length - 1; i++) {
             int minIndex = i;
